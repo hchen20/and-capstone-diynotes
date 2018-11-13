@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "153868483013",
+    "firebase_url": "https://and-capstone.firebaseio.com",
+    "project_id": "and-capstone",
+    "storage_bucket": "and-capstone.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:153868483013:android:5dfc5dab0712e27e",
+        "android_client_info": {
+          "package_name": "com.udacity.diynotes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "153868483013-bgu1ogh847d6p73ud64db8f2bn1ihl3h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBj1-tDguoaLXLmi9LryoqEIP2Hif8-lco"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

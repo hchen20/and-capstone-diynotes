@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">DYINotes</string>
+    <string name="action_add_book">Add Book</string>
+</resources>
