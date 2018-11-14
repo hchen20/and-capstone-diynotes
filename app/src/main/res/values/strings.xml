@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">DYINotes</string>
     <string name="action_add_book">Add Book</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="title_activity_detailed_note">DetailedNoteActivity</string>
+    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="admob_app_id">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="ad_banner">BANNER</string>
 </resources>

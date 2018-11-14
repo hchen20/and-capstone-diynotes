@@ -14,6 +14,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.udacity.diynotes.AppExecutors;
 import com.udacity.diynotes.R;
 import com.udacity.diynotes.R2;
@@ -32,6 +36,9 @@ public class MainActivity extends AppCompatActivity  {
     @BindView(R2.id.add_book_fab)
     FloatingActionButton mAddBook;
 
+    @BindView(R.id.adView)
+    AdView mAdView;
+
     private BookListAdapter mBookListAdapter;
     private MainActivityViewModel mViewModel;
     private int mPosition = RecyclerView.NO_POSITION;
@@ -46,6 +53,15 @@ public class MainActivity extends AppCompatActivity  {
 
         ButterKnife.bind(this);
 
+
+        MobileAds.initialize(this, getString(R.string.admob_app_id));
+        // Create an ad request
+
+        AdRequest adRequest = new AdRequest.Builder()
+                                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                                .build();
+        mAdView.loadAd(adRequest);
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(this,
                                                     LinearLayoutManager.VERTICAL,
                                         false);
@@ -58,9 +74,15 @@ public class MainActivity extends AppCompatActivity  {
         MainViewModelFactory factory = InjectorUtils.provideMainActivityViewModelFactory(this.getApplicationContext());
         mViewModel = ViewModelProviders.of(this,factory).get(MainActivityViewModel.class);
 
+        // Insert a place holder book to prevent startup crash
+        if (mViewModel.getBooks() == null) {
+            mExecutor.diskIO().execute(() -> {
+                mViewModel.insertBook(new NoteEntry("Adventure", "Start"));
+
+            });
+        }
+
         mViewModel.getBooks().observe(this, bookEntries -> {
-            Log.d(TAG, "onCreate: " + String.valueOf(bookEntries.size()));
-            Log.d(TAG, "onCreate: " + bookEntries.get(0));
             mBookListAdapter.swapBooks(bookEntries);
             if (mPosition == RecyclerView.NO_POSITION) mPosition = 0;
             mRecyclerView.smoothScrollToPosition(mPosition);
@@ -69,9 +91,6 @@ public class MainActivity extends AppCompatActivity  {
                 Toast.makeText(this, "There is no book currently", Toast.LENGTH_LONG).show();
             }
         });
-
-
-
 
         // Source: https://stackoverflow.com/questions/26097513/android-simple-alert-dialog
         mAddBook.setOnClickListener(new View.OnClickListener() {

@@ -5,6 +5,7 @@ import android.content.Context;
 import com.udacity.diynotes.AppExecutors;
 import com.udacity.diynotes.data.BookRepository;
 import com.udacity.diynotes.data.database.BookDatabase;
+import com.udacity.diynotes.ui.DetailedNoteViewModelFactory;
 import com.udacity.diynotes.ui.MainViewModelFactory;
 
 public class InjectorUtils {
@@ -19,5 +20,10 @@ public class InjectorUtils {
     public static MainViewModelFactory provideMainActivityViewModelFactory(Context context) {
         BookRepository repository = provideRepository(context.getApplicationContext());
         return new MainViewModelFactory(repository);
+    }
+
+    public static DetailedNoteViewModelFactory provideDetailViewModelFactory(Context context, String bookName) {
+        BookRepository repository = provideRepository(context.getApplicationContext());
+        return new DetailedNoteViewModelFactory(repository, bookName);
     }
 }
