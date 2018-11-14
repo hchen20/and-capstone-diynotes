@@ -27,6 +27,10 @@ import com.udacity.diynotes.utils.InjectorUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.analytics.FirebaseAnalytics.Event;
+import com.google.firebase.analytics.FirebaseAnalytics.Param;
+
 public class MainActivity extends AppCompatActivity  {
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -98,6 +102,8 @@ public class MainActivity extends AppCompatActivity  {
             public void onClick(View view) {
                 String note = "Note Start";
 
+
+
                 final EditText input = new EditText(MainActivity.this);
                 AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
                 alertDialog.setTitle("Please enter a book name");
@@ -114,6 +120,12 @@ public class MainActivity extends AppCompatActivity  {
                             mViewModel.insertBook(noteEntry);
 
                         });
+
+                        // Firebase Analytics Logging
+                        Bundle params = new Bundle();
+                        params.putString(Param.ITEM_ID, bookName);
+                        FirebaseAnalytics analytics = FirebaseAnalytics.getInstance(MainActivity.this);
+                        analytics.logEvent(Event.ADD_TO_CART, params);
 
 
                         Log.d(TAG, "onClick: Result of the click");
