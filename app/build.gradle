@@ -7,7 +7,7 @@ android {
         config {
             keyAlias 'and-capstone'
             keyPassword 'password'
-            storeFile file('C:/workspace/udacity/android_developer/and-capstone/and-diynotes/keystore.jks')
+            storeFile file("$rootDir/keystore.jks")
             storePassword 'password'
         }
     }
