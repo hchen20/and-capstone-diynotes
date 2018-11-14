@@ -22,7 +22,7 @@ public class BookListWidget extends AppWidgetProvider {
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
 
-        CharSequence widgetText = context.getString(R.string.appwidget_text);
+        CharSequence widgetText = "DYINotes";
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.book_list_widget);
         views.setTextViewText(R.id.appwidget_text, widgetText);
@@ -73,7 +73,6 @@ public class BookListWidget extends AppWidgetProvider {
         String formattedNames = "";
 
         for (String name: bookNames) {
-            Log.d(TAG, "processBookNames: " + name);
             formattedNames = formattedNames + name + "\n";
         }
 

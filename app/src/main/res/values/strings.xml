@@ -9,4 +9,10 @@
     <string name="ad_banner">BANNER</string>
     <string name="offline">Please connect to the Internet</string>
     <string name="icon_image_url">https://cdn3.iconfinder.com/data/icons/ballicons-free/128/browser.png</string>
+    <string name="book_placeholder">Adventure</string>
+    <string name="note_placeholder">Start</string>
+    <string name="no_book">There is no book currently</string>
+    <string name="alert_title">Please enter a book name</string>
+    <string name="alert_ok_button">OK</string>
+    <string name="alert_cancel_button">Cancel</string>
 </resources>

@@ -107,7 +107,8 @@ public class MainActivity extends AppCompatActivity  {
         // Insert a place holder book to prevent startup crash
         if (mViewModel.getBooks() == null) {
             mExecutor.diskIO().execute(() -> {
-                mViewModel.insertBook(new NoteEntry("Adventure", "Start"));
+                mViewModel.insertBook(new NoteEntry(getString(R.string.book_placeholder),
+                        getString(R.string.note_placeholder)));
 
             });
         }
@@ -134,7 +135,7 @@ public class MainActivity extends AppCompatActivity  {
 
 
             if (bookEntries == null) {
-                Toast.makeText(this, "There is no book currently", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, getString(R.string.no_book), Toast.LENGTH_LONG).show();
             }
         });
 
@@ -142,22 +143,21 @@ public class MainActivity extends AppCompatActivity  {
         mAddBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String note = "Note Start";
+                String note = getString(R.string.note_placeholder);
 
 
 
                 final EditText input = new EditText(MainActivity.this);
                 AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
-                alertDialog.setTitle("Please enter a book name");
+                alertDialog.setTitle(getString(R.string.alert_title));
                 alertDialog.setView(input);
-                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE,"OK", new DialogInterface.OnClickListener() {
+                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE,getString(R.string.alert_ok_button), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        // (todo) Implement insert new Book here
+
                         String bookName = input.getText().toString();
                         NoteEntry noteEntry = new NoteEntry(bookName, note);
 
-                        Log.d(TAG, "onClick: About to clicked");
                         mExecutor.diskIO().execute(() -> {
                             mViewModel.insertBook(noteEntry);
 
@@ -170,11 +170,10 @@ public class MainActivity extends AppCompatActivity  {
                         analytics.logEvent(Event.ADD_TO_CART, params);
 
 
-                        Log.d(TAG, "onClick: Result of the click");
                         Toast.makeText(getApplicationContext(), bookName, Toast.LENGTH_SHORT).show();
                     }
                 });
-                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE,"Cancel", new DialogInterface.OnClickListener() {
+                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE,getString(R.string.alert_cancel_button), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();

@@ -32,7 +32,6 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookLi
 
     public void swapBooks(final List<String> newBooks) {
         // If there was not book data, then recreate all of the list
-        Log.d(TAG, "swapBooks: " + String.valueOf(newBooks.size()));
         if (mBooks == null) {
             mBooks = newBooks;
             notifyDataSetChanged();
@@ -85,7 +84,6 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookLi
         @Override
         public void onClick(View v) {
             int position = getAdapterPosition();
-            Log.d(TAG, "onClick: you clicked on " + String.valueOf(position));
         }
     }
 }
