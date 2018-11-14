@@ -7,4 +7,6 @@
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
     <string name="admob_app_id">ca-app-pub-3940256099942544~3347511713</string>
     <string name="ad_banner">BANNER</string>
+    <string name="offline">Please connect to the Internet</string>
+    <string name="icon_image_url">https://cdn3.iconfinder.com/data/icons/ballicons-free/128/browser.png</string>
 </resources>
